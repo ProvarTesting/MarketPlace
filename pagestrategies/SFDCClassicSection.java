@@ -5,8 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import com.provar.core.testapi.annotations.PageSectionLocatorStrategy;
 import com.provar.core.testapi.annotations.StrategyLocator;
 
-@PageSectionLocatorStrategy(title="SF Classic Page Section",// Name that will uniquely identify strategy file in TB 
-sectionName ="{label}PageSection", // Default name for the block that is displayed while mapping in TB
+@PageSectionLocatorStrategy(title="SF Classic Section",// Name that will uniquely identify strategy file in TB 
+sectionName ="{label} Section", // Default name for the block that is displayed while mapping in TB
 priority = Integer.MAX_VALUE, // In case of multiple matches locators will be displayed in priority order
 // The page section are identified based on the sectionLocators xpaths.
 sectionLocators = {

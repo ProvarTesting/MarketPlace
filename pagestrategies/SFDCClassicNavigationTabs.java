@@ -16,7 +16,7 @@ import com.provar.core.testapi.annotations.StrategyLocator;
 import com.provar.core.testapi.annotations.TabLocatorStrategy;
 
 @TabLocatorStrategy(title="SF Classic Tab", // Name that will uniquely identify strategy file in TB 
-tabName ="ClassicTab2", // Default name for the block that is displayed while mapping in TB
+tabName ="{label} Tab", // Default name for the block that is displayed while mapping in TB
 priority = Integer.MAX_VALUE, // In case of multiple matches locators will be displayed in priority order
 // The Tab content is identified first based on contentLocators xpaths
 contentLocators = {
