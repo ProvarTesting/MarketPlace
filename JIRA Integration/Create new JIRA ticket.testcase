@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="3">
+  <summary>&lt;font face="Lucida Grande" size="2"&gt;thisd is a simmaru&lt;/font&gt;</summary>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: DemoOrg (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">DemoOrg</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">DemoOrg</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="3" title="Create Object: Opportunity=&gt;OpportunityId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">Opportunity</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">OpportunityId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">DemoOrg</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="Name">
+          <value class="value" valueClass="string">Demo Opp </value>
+        </argument>
+        <argument id="StageName">
+          <value class="value" valueClass="string">Proposal/Price Quote</value>
+        </argument>
+        <argument id="CloseDate"/>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">DemoOrg</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">Opportunity</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=Opportunity&amp;field=Name" name="Name" title="Name"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=Opportunity&amp;field=StageName" name="StageName" title="StageName"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=Opportunity&amp;field=CloseDate" name="CloseDate" title="CloseDate"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.Finally" name="Finally" testItemId="5" title="Finally: ">
+      <arguments>
+        <argument id="description"/>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="6">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="9" title="Set Values: error">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">error</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="TestCaseErrors"/>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="7" title="If: {TestCaseSuccessful()}">
+              <arguments>
+                <argument id="condition">
+                  <value class="funcCall" id="TestCaseSuccessful"/>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="8">
+                  <steps/>
+                </clause>
+                <clause name="else" testItemId="12">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.restservice.WebConnect" name="WebConnect" testItemId="13" title="Web Connect: JIRA">
+                      <arguments>
+                        <argument id="connectionName">
+                          <value class="value" valueClass="string">JIRA</value>
+                        </argument>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">JIRA</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.restservice.RestRequest" name="RestRequest" testItemId="14" title="Web Request (HTTP/REST): ⇒RestResponse">
+                      <arguments>
+                        <argument id="connectionName">
+                          <value class="value" valueClass="string">JIRA</value>
+                        </argument>
+                        <argument id="targetValue">
+                          <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+                        </argument>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">RestResponse</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="statusResultName">
+                          <value class="value" valueClass="string">RestResponseStatus</value>
+                        </argument>
+                        <argument id="restResourceUrl">
+                          <value class="value" valueClass="string">/rest/api/2/issue/</value>
+                        </argument>
+                        <argument id="restRequestHeader">
+                          <value class="value" valueClass="string">Content-Type:application/json</value>
+                        </argument>
+                        <argument id="restBody">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">{\n    "fields": {\n       "project":\n       {\n          "key": "DEMO"\n       },\n       "summary": "</value>
+                              <variable>
+                                <path element="error">
+                                  <filter class="index">
+                                    <index valueClass="decimal">0</index>
+                                  </filter>
+                                </path>
+                              </variable>
+                              <value valueClass="string">",\n       "description": "</value>
+                              <variable>
+                                <path element="error">
+                                  <filter class="index">
+                                    <index valueClass="decimal">0</index>
+                                  </filter>
+                                </path>
+                              </variable>
+                              <value valueClass="string">",\n       "issuetype": {\n          "name": "Bug"\n       }\n   }\n}</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="restAttachments">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                        <apiParam group="body" name="restBody" title="Body">
+                          <type>
+                            <textType>
+                              <constraints>
+                                <valueConstraint name="mimeType">application/json</valueConstraint>
+                              </constraints>
+                            </textType>
+                          </type>
+                        </apiParam>
+                        <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+                          <childParams>
+                            <apiParam name="name" title="Attachment Name"/>
+                            <apiParam name="fileName" title="File Name"/>
+                            <apiParam name="contentType" title="Content Type">
+                              <type>
+                                <choiceType>
+                                  <constraints>
+                                    <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                    <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                                  </constraints>
+                                </choiceType>
+                              </type>
+                            </apiParam>
+                            <apiParam name="data" title="Data">
+                              <type>
+                                <urlType/>
+                              </type>
+                            </apiParam>
+                            <apiParam name="base64Encode" title="Encode As Base64">
+                              <type>
+                                <booleanType/>
+                              </type>
+                            </apiParam>
+                          </childParams>
+                        </compoundApiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

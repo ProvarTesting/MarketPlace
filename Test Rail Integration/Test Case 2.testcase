@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="24">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="14" title="Set Values: value1">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">value1</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="value" valueClass="string">10</value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="15" title="Set Values: value2">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">value2</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="value" valueClass="string">15</value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="16" title="Assert: {value1} EqualTo {value2}">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="value1"/>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="variable">
+            <path element="value2"/>
+          </value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">EqualTo</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="21" title="If: {TestCaseSuccessful()}">
+      <arguments>
+        <argument id="condition">
+          <value class="funcCall" id="TestCaseSuccessful"/>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="22">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="23" title="Set Values: TestRail_Execution_Status">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">TestRail_Execution_Status</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">1</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+        <clause name="else" testItemId="24">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="25" title="Set Values: TestRail_Execution_Status">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">TestRail_Execution_Status</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">5</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="26" title="Set Values: errors">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">errors</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="TestCaseErrors"/>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.Finally" name="Finally" testItemId="17" title="Finally: Upload test execution result in Test Rail">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Upload test execution result in Test Rail</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="18">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.restservice.WebConnect" name="WebConnect" testItemId="1" title="Web Connect: TestRail">
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">TestRail</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">TestRail</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.restservice.RestRequest" name="RestRequest" testItemId="11" title="Web Request (HTTP/REST): ⇒RestResponse_AddTestExecutionResult">
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">TestRail</value>
+                </argument>
+                <argument id="targetValue">
+                  <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">RestResponse_AddTestExecutionResult</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="statusResultName">
+                  <value class="value" valueClass="string">RestResponseStatus</value>
+                </argument>
+                <argument id="restResourceUrl">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">/index.php?/api/v2/add_result_for_case/</value>
+                      <variable>
+                        <path element="RestResponse_AddRun"/>
+                        <path element="id"/>
+                      </variable>
+                      <value valueClass="string">/</value>
+                      <variable>
+                        <path element="TestRail_id"/>
+                      </variable>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="restRequestHeader">
+                  <value class="value" valueClass="string">Content-Type:application/json</value>
+                </argument>
+                <argument id="restBody">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">{\n\t"status_id": </value>
+                      <variable>
+                        <path element="TestRail_Execution_Status"/>
+                      </variable>
+                      <value valueClass="string">,\n\t"comment": "</value>
+                      <variable>
+                        <path element="errors">
+                          <filter class="index">
+                            <index valueClass="decimal">0</index>
+                          </filter>
+                        </path>
+                      </variable>
+                      <value valueClass="string">"}</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="restAttachments">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+              </arguments>
+              <generatedParameters>
+                <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="body" name="restBody" title="Body">
+                  <type>
+                    <textType>
+                      <constraints>
+                        <valueConstraint name="mimeType">application/json</valueConstraint>
+                      </constraints>
+                    </textType>
+                  </type>
+                </apiParam>
+                <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+                  <childParams>
+                    <apiParam name="name" title="Attachment Name"/>
+                    <apiParam name="fileName" title="File Name"/>
+                    <apiParam name="contentType" title="Content Type">
+                      <type>
+                        <choiceType>
+                          <constraints>
+                            <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                            <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                          </constraints>
+                        </choiceType>
+                      </type>
+                    </apiParam>
+                    <apiParam name="data" title="Data">
+                      <type>
+                        <urlType/>
+                      </type>
+                    </apiParam>
+                    <apiParam name="base64Encode" title="Encode As Base64">
+                      <type>
+                        <booleanType/>
+                      </type>
+                    </apiParam>
+                  </childParams>
+                </compoundApiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="TestRail_id" title="TestRail_id">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="TestRail_id">
+      <value class="value" valueClass="string">2</value>
+    </argument>
+  </args>
+</testCase>
